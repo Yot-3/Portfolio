@@ -77,12 +77,14 @@ loader.load(
         const displacement = new Float32Array(numFaces * 3 * 3);
         const color = new THREE.Color();
 
+        const palette = [0xe3c134, 0x829def, 0x2c2c5c];
+
         for (let f = 0; f < numFaces; f++) {
             const index = 9 * f;
             const h = 0.2 * Math.random();
             const s = 0.5 + 0.5 * Math.random();
             const l = 0.5 + 0.5 * Math.random();
-            color.setHSL(h, s, l);
+            color.setHex(palette[Math.floor(Math.random() * palette.length)]);
 
             // One random Y displacement for the whole face
             const dispY = Math.random() * 10 + 2; // Y: 2 to 12 (random fall distance)
@@ -115,8 +117,8 @@ loader.load(
 
         let startTime = Date.now() * 0.001;
         const pushOutDuration = 5;   // seconds (faster)
-        const pauseDuration = 0.5;   // seconds (pause between phases)
-        const pullInDuration = 2;    // seconds (slower)
+        const pauseDuration = 2;   // seconds (pause between phases)
+        const pullInDuration = 3;    // seconds (slower)
         const totalDuration = pushOutDuration + pauseDuration + pullInDuration + pauseDuration;
 
         function animate() {
